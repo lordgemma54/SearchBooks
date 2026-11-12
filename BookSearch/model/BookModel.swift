@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct BookModel : Identifiable {
-    
+struct BookModel : Codable, Identifiable {
+    var id : String
     var title : String
-    var authors : [String]
+    var authors : [Authors]
     var publisher : String
     var publishedDate : String
     var description : String
@@ -18,6 +18,20 @@ struct BookModel : Identifiable {
     var categories : [String]
     var averageRating : Int
     var ratingsCount : Int
-    var imageLinks : [String]
-    
+    var imageLinks : [ImageModel]
 }
+
+struct Authors : Codable {
+    var authors : [String]
+}
+
+struct Categories : Codable {
+    var categories : [String]
+}
+
+struct ImageModel : Codable {
+    var smallThumbnail : String
+    var thumbnail : String
+}
+
+
