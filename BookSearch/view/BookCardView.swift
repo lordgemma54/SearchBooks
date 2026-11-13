@@ -14,21 +14,40 @@ struct BookCardView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(
-                url: URL(string: book.volumeInfo.imageLinks?.smallThumbnail ?? "")
-            ) {
-                image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                Image(systemName: "book.closed")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(.secondary)
-                    .padding()
-            }
-            .frame(width: 65, height: 90)
+            AsyncImage(url: URL(string: (book.volumeInfo.imageLinks?.smallThumbnail ?? "").replacingOccurrences(of: "http://", with: "https://"))
+                
+        ) {
+            image in
+            image
+                .resizable()
+                .scaledToFit()
+        } placeholder: {
+            Image(systemName: "book.closed")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(.secondary)
+                .padding()
+        }
+        .frame(width: 65, height: 90)
+            
+            
+            
+            
+            
+            
+            
+//            (url: imageURL) {phase in
+//                if let image = phase.image {
+//                    image
+//                        .resizable()
+//                        .scaledToFit()
+//                } else if phase.error != nil {
+//                    Image(systemName: "exclamationmark.triange")
+//                } else {
+//                    ProgressView()
+//                }
+//            }
+                
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(book.volumeInfo.title ?? "Unknown Title")

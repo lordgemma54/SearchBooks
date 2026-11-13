@@ -16,8 +16,6 @@ class BooksViewModel : ObservableObject {
 //    decode api response
 //    publish the search results as book objects to use in view
     
-    
-    
     @Published var titleResults : [BookModel] = []
     @Published var authorResults : [BookModel] = []
     @Published var isLoading = false
@@ -59,7 +57,8 @@ class BooksViewModel : ObservableObject {
         components.queryItems = [
             URLQueryItem(name: "q", value: query),
             URLQueryItem(name: "key", value: apiKey),
-            URLQueryItem(name: "maxResults", value: "20")
+            URLQueryItem(name: "maxResults", value: "20"),
+            URLQueryItem(name: "langRestrict", value: "en")
             ]
         
         guard let url = components.url else { throw URLError(.badURL) }

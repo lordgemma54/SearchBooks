@@ -15,7 +15,7 @@ struct BookDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
                 AsyncImage(
-                    url: URL(string: book.volumeInfo.imageLinks?.thumbnail ?? "")
+                    url: URL(string: (book.volumeInfo.imageLinks?.thumbnail ?? "").replacingOccurrences(of: "http://", with: "https://"))
                 ) { image in
                     image
                         .resizable()
