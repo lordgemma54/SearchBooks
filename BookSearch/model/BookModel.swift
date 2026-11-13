@@ -30,8 +30,13 @@ struct Categories : Codable {
 }
 
 struct ImageModel : Codable {
-    var smallThumbnail : String
-    var thumbnail : String
+    var sThumb : String
+    var thumb : String
+    
+    enum CodingKeys : String, CodingKey {
+        case sThumb = "smallThumbnail"
+        case thumb = "Thumbnail"
+    }
 }
 
 
