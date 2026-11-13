@@ -9,14 +9,62 @@ import SwiftUI
 
 struct BookListView: View {
     
-    @State var searchTerm : String
+    @State var searchTerm : String = ""
     @EnvironmentObject var books : BooksViewModel
     
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack {
+            VStack {
+                TextField("Search books or authors", text: $searchTerm)
+                    .textFieldStyle(.roundedBorder)
+                
+                Button("Search") {
+                    Task {
+                        await books.fetchBooks(searchTerm: searchTerm)
+                    }
+                }
+                .disabled(searchTerm.trimmingCharacters(in: .whitespaces).isEmpty)
+            }
+            .padding()
+            
+            if books.isLoading {
+                ProgressView()
+            } else if let error = books.errorMsg {
+                Text(error)
+                    .foregroundStyle(.red)
+                    .padding()
+            } else {
+                List {
+                    Section("Matching Titles") {
+                        ForEach(books.titleResults) { book in
+                            NavigationLink {
+                                BookDetailView(book : book)
+                            } label: {
+                                BookCardView(book : book)
+                            }
+                        }
+                    }
+                    
+                    Section("Matching Authors") {
+                        ForEach(books.authorResults) { book in
+                            NavigationLink {
+                                BookDetailView(book : book)
+                            } label: {
+                                BookCardView(book : book)
+                            }
+                        }
+                    }
+                    
+                }
+                .listStyle(.insetGrouped)
+            }
+            
+        }
+        .navigationTitle("Book Search")
     }
 }
 
-//#Preview {
-//    BookListView()
-//}
+#Preview {
+    BookListView()
+        .environmentObject(BooksViewModel())
+}

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 class BooksViewModel : ObservableObject {
@@ -17,7 +18,6 @@ class BooksViewModel : ObservableObject {
     
     
     
-//    @Binding var searchTerm : String
     @Published var titleResults : [BookModel] = []
     @Published var authorResults : [BookModel] = []
     @Published var isLoading = false
