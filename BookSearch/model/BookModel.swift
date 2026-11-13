@@ -9,34 +9,40 @@ import Foundation
 
 struct BookModel : Codable, Identifiable {
     var id : String
-    var title : String
-    var authors : [Authors]
-    var publisher : String
-    var publishedDate : String
-    var description : String
-    var pageCount : Int
-    var categories : [String]
-    var averageRating : Int
-    var ratingsCount : Int
-    var imageLinks : [ImageModel]
-}
-
-struct Authors : Codable {
-    var authors : [String]
-}
-
-struct Categories : Codable {
-    var categories : [String]
-}
-
-struct ImageModel : Codable {
-    var sThumb : String
-    var thumb : String
     
-    enum CodingKeys : String, CodingKey {
-        case sThumb = "smallThumbnail"
-        case thumb = "Thumbnail"
-    }
+    let volumeInfo : VolumeInfo
+    
+}
+
+struct VolumeInfo : Codable {
+    let title = String?
+    let authors = [String]?
+    
+    let publisher = String?
+    let publishedDate = String?
+    
+    let description : String?
+    let pageCount : Int?
+    let categories : [String]?
+    
+    let averageRating : Double?
+    let ratingsCount : Int?
+    
+    let imageLinks : ImageLinks?
+
+}
+
+struct ImageLinks : Codable {
+    let smallThumbnail : String?
+    let thumbnail : String?
+    
+//    var sThumb : String
+//    var thumb : String
+//    
+//    enum CodingKeys : String, CodingKey {
+//        case sThumb = "smallThumbnail"
+//        case thumb = "thumbnail"
+//    }
 }
 
 

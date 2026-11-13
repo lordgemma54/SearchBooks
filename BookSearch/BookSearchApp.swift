@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct BookSearchApp: App {
+    
+    @StateObject var books = BooksViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(books)
         }
     }
 }
