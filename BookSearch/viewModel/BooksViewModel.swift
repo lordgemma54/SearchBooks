@@ -47,11 +47,10 @@ class BooksViewModel : ObservableObject {
     
     private func searchBooks(query : String) async throws -> [BookModel]{
         let baseUrl = "https://www.googleapis.com/books/v1/volumes"
-        let apiKey = "AIzaSyDHfQzP71vAt5SWxTfD_Vj7Sk85TgsBpoI"
+        let apiKey = "AIzaSyCxeUenZnLO00JzIRqJnoX84UL-ObK6RUg"
         
         guard var components = URLComponents(string : baseUrl) else {
             throw URLError(.badURL)
-//            return
         }
         
         components.queryItems = [

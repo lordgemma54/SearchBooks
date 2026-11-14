@@ -40,19 +40,29 @@ struct BookDetailView: View {
                 
                 Divider()
                 
-                Text("Publisher : \(book.volumeInfo.publisher ?? "Unknown")")
-                Text("Published : \(book.volumeInfo.publishedDate ?? "Unknown")")
+                Text("Publisher: ").bold() + Text(book.volumeInfo.publisher ?? "Unknown")
+                Text("Published: ").bold() + Text(book.volumeInfo.publishedDate ?? "Unknown")
                 
                 if let pageCount = book.volumeInfo.pageCount {
-                    Text("Page Count: \(pageCount)")
+                    Text("Page Count: ").bold() + Text("\(pageCount)")
                 } else {
-                    Text("Page Coung: Unknown")
+                    Text("Page Count: ").bold() + Text("Unknown")
                 }
                 
-                Text("Categories : \(book.volumeInfo.categories?.joined(separator: ", ") ?? "Unknown")")
+                Text("Categories: ").bold() + Text(book.volumeInfo.categories?.joined(separator: ", ") ?? "Unknown")
+                
+                
                 if let rating = book.volumeInfo.averageRating {
-                    Text("Rating \(rating)/5")
+                    let fmtRating = rating.formatted(.number.precision(.fractionLength(2)))
+                    
+                    if let rtgCount = book.volumeInfo.ratingsCount {
+                        Text("Rating: ").bold() + Text("\(fmtRating)/5 (\(rtgCount))")
+                    }else {
+                        Text("Rating: ").bold() + Text("\(fmtRating)/5")
+                    }
                 }
+                
+              
                 
                 Divider()
                 Text("Description")
