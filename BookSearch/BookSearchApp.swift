@@ -14,7 +14,6 @@ struct BookSearchApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             BookListView()
                 .environmentObject(books)
         }

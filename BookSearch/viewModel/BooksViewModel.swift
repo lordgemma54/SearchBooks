@@ -12,7 +12,7 @@ import Combine
 class BooksViewModel : ObservableObject {
   
 //    should accept a search term
-//    make api requests
+//    make api request
 //    decode api response
 //    publish the search results as book objects to use in view
     

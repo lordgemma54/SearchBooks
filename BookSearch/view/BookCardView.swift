@@ -10,7 +10,6 @@ import SwiftUI
 struct BookCardView: View {
     
     let book : BookModel
-//    @EnvironmentObject private var books : BooksViewModel
     
     var body: some View {
         HStack {
@@ -29,25 +28,6 @@ struct BookCardView: View {
                 .padding()
         }
         .frame(width: 65, height: 90)
-            
-            
-            
-            
-            
-            
-            
-//            (url: imageURL) {phase in
-//                if let image = phase.image {
-//                    image
-//                        .resizable()
-//                        .scaledToFit()
-//                } else if phase.error != nil {
-//                    Image(systemName: "exclamationmark.triange")
-//                } else {
-//                    ProgressView()
-//                }
-//            }
-                
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(book.volumeInfo.title ?? "Unknown Title")
