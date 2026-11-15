@@ -21,7 +21,6 @@ class BooksViewModel : ObservableObject {
     @Published var isLoading = false
     @Published var errorMsg: String?
 
-    //    @MainActor
     func fetchBooks(searchTerm : String) async {
         
         guard !searchTerm.trimmingCharacters(in: .whitespaces).isEmpty else { return }
@@ -41,13 +40,14 @@ class BooksViewModel : ObservableObject {
             errorMsg = error.localizedDescription
         }
         isLoading = false
-
-
         }
     
+//    needed to use google to understand how to hide my API key from the public. 
     private func searchBooks(query : String) async throws -> [BookModel]{
         let baseUrl = "https://www.googleapis.com/books/v1/volumes"
-        let apiKey = "AIzaSyCxeUenZnLO00JzIRqJnoX84UL-ObK6RUg"
+        guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
+            fatalError("API_KEY not found in Info.plist")
+        }
         
         guard var components = URLComponents(string : baseUrl) else {
             throw URLError(.badURL)
