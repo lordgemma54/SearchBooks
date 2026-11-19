@@ -6,9 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B3FE3B2A30AF84D900C2AEE3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B3FE3B2930AF84D900C2AEE3 /* FirebaseAnalytics */; };
+		B3FE3B2C30AF84D900C2AEE3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B3FE3B2B30AF84D900C2AEE3 /* FirebaseAuth */; };
+		B3FE3B3030AF882900C2AEE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3FE3B2F30AF882900C2AEE3 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B3E8AE3530A5685600D248BA /* BookSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E8AEA530AA053D00D248BA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B3FE3B2F30AF882900C2AEE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -37,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3FE3B2A30AF84D900C2AEE3 /* FirebaseAnalytics in Frameworks */,
+				B3FE3B2C30AF84D900C2AEE3 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +58,7 @@
 				B3E8AEA530AA053D00D248BA /* .gitignore */,
 				B3E8AE3730A5685600D248BA /* BookSearch */,
 				B3E8AE3630A5685600D248BA /* Products */,
+				B3FE3B2F30AF882900C2AEE3 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +90,8 @@
 			);
 			name = BookSearch;
 			packageProductDependencies = (
+				B3FE3B2930AF84D900C2AEE3 /* FirebaseAnalytics */,
+				B3FE3B2B30AF84D900C2AEE3 /* FirebaseAuth */,
 			);
 			productName = BookSearch;
 			productReference = B3E8AE3530A5685600D248BA /* BookSearch.app */;
@@ -109,6 +121,9 @@
 			);
 			mainGroup = B3E8AE2C30A5685600D248BA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B3FE3B2830AF84D900C2AEE3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B3E8AE3630A5685600D248BA /* Products */;
 			projectDirPath = "";
@@ -124,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3FE3B3030AF882900C2AEE3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +365,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B3FE3B2830AF84D900C2AEE3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B3FE3B2930AF84D900C2AEE3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3FE3B2830AF84D900C2AEE3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		B3FE3B2B30AF84D900C2AEE3 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3FE3B2830AF84D900C2AEE3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B3E8AE2D30A5685600D248BA /* Project object */;
 }
