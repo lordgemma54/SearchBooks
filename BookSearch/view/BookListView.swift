@@ -28,6 +28,8 @@ struct BookListView: View {
             }
             .padding()
             
+            
+            
             if books.isLoading {
                 ProgressView()
             } else if let error = books.errorMsg {
@@ -59,7 +61,10 @@ struct BookListView: View {
                 }
                 .listStyle(.insetGrouped)
             }
-            
+            Spacer()
+            Button("Log out") {
+                authvm.logout()
+            }
         }
         .navigationTitle("Book Search")
     }

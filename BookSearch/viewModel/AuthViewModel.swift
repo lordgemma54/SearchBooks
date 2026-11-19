@@ -25,8 +25,19 @@ class AuthViewModel : ObservableObject {
         self.isLoggedIn = Auth.auth().currentUser != nil
     }
     
-    func createUser (email: String, password: String) {
-//        self.errMsg = ""
+    func createUser (email: String, password: String, confPassword: String) {
+        errMsg = ""
+      
+        guard !email.isEmpty, !password.isEmpty else {
+            errMsg = "Please enter an email and password"
+            return
+        }
+        
+        guard password == confPassword else {
+            errMsg = "Passwords do not match"
+            return
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {
                 self?.errMsg = error.localizedDescription
@@ -48,7 +59,7 @@ class AuthViewModel : ObservableObject {
     }
     
     
-    func logoutUser() {
+    func logout() {
         try? Auth.auth().signOut()
         self.isLoggedIn = false
     }

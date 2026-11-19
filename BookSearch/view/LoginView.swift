@@ -56,7 +56,10 @@ struct LoginView: View {
             
             Button(isCreatingAccount ? "Create" : "Login") {
                 if isCreatingAccount {
-                    authvm.createUser(email: email, password: password)
+                    authvm.createUser(
+                        email: email,
+                        password: password,
+                        confPassword: confPassword)
                 } else {
                     authvm.loginUser(email: email, password: password)
                 }
