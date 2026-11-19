@@ -11,6 +11,7 @@ struct BookListView: View {
     
     @State var searchTerm : String = ""
     @EnvironmentObject var books : BooksViewModel
+    @EnvironmentObject var authvm : AuthViewModel
     
     var body: some View {
         NavigationStack {

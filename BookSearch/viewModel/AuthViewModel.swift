@@ -14,12 +14,42 @@ import FirebaseAuth
 
 class AuthViewModel : ObservableObject {
     
-//   handles ingestion of credentials
-//    sends these to firebase
+//    handles ingestion of credentials
+//    sends credentials to firebase
 //    manages user session
-    func loginUser (email: String, password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-          // ...
+    @Published var isLoggedIn : Bool = false
+    @Published var errMsg : String = ""
+    
+//    checks if firebase already has a cached session on the device
+    init() {
+        self.isLoggedIn = Auth.auth().currentUser != nil
+    }
+    
+    func createUser (email: String, password: String) {
+//        self.errMsg = ""
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            if let error = error {
+                self?.errMsg = error.localizedDescription
+                return
+            }
+            self?.isLoggedIn = true
         }
+    }
+    
+    
+    func loginUser (email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            if let error = error {
+                self?.errMsg = error.localizedDescription
+                return
+            }
+            self?.isLoggedIn = true
+        }
+    }
+    
+    
+    func logoutUser() {
+        try? Auth.auth().signOut()
+        self.isLoggedIn = false
     }
 }

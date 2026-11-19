@@ -22,17 +22,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct BookSearchApp: App {
     
-    // -------------------- copied from firebase --------------------
+// -------------------- copied from firebase --------------------
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @StateObject var books = BooksViewModel()
+    @StateObject var authvm = AuthViewModel()
     
     var body: some Scene {
         WindowGroup {
-//            LoginView()
-//                .environmentObject()
-            BookListView()
-                .environmentObject(books)
+            if authvm.isLoggedIn {
+                BookListView()
+                    .environmentObject(books)
+                    .environmentObject(authvm)
+            } else {
+                LoginView()
+                    .environmentObject(authvm)
+            }
+            
         }
     }
 }
