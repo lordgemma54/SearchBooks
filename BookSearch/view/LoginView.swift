@@ -10,16 +10,36 @@ import SwiftUI
 //import FirebaseFirestore
 //import FirebaseAuth
 
-//Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-//  // ...
-//}
+
 
 struct LoginView: View {
+    
+    @State var email : String = ""
+    @State var password : String = ""
+    
+    @EnvironmentObject var authvm : AuthViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 16) {
+            TextField("Enter email", text: $email)
+                .fontWeight(.bold)
+                .textFieldStyle(.roundedBorder)
+            
+           SecureField("Enter password", text: $password)
+                .fontWeight(.bold)
+                .textFieldStyle(.roundedBorder)
+            
+            Button("Login") {
+                authvm.loginUser(email: email, password: password)
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
     }
 }
 
 #Preview {
     LoginView()
+        .environmentObject(AuthViewModel())
+
 }
