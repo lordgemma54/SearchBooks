@@ -29,7 +29,6 @@ struct BookListView: View {
             .padding()
             
             
-            
             if books.isLoading {
                 ProgressView()
             } else if let error = books.errorMsg {
